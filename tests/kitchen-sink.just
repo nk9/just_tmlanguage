@@ -26,7 +26,7 @@ export RUST_BACKTRACE_2 := "1"
 string-with-tab             := "\t"
 string-with-newline         := "\n"
 string-with-carriage-return := "\r"
-string-with-double-quote    := "\""
+# string-with-double-quote    := "\""
 string-with-slash           := "\\"
 string-with-no-newline      := "\
 "
