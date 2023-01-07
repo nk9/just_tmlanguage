@@ -1,0 +1,153 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+name: Just-YAML-TML
+scopeName: source.just
+fileTypes: [just, justfile, '.justfile']
+uuid: 68027c80-19a7-47f2-8f03-347e783cccf9
+
+patterns:
+- include: '#interpolate'
+- include: '#comments'
+- include: '#scripts'
+- include: '#strings'
+- include: '#assignments'
+- include: '#recipeDefinition'
+- include: '#keywords'
+
+repository:
+  assignments:
+    patterns:
+    - match: ^(export[\s]?)?([a-zA-Z_][a-zA-Z0-9_-]*)\s*:?=
+      captures:
+        '1': {name: storage.type.just}
+        '2': {name: variable.name.just}
+
+  comments:
+    patterns:
+    - name: comment.line.just
+      match: ^#[^!].*
+
+  interpolate:
+    patterns:
+    - name: string.interpolated.just
+      begin: \{\{
+      end: \}\}
+
+  keywords:
+    patterns:
+    - name: keyword.control.just
+      match: \b(arch|os|os_family|env_var|env_var_or_default)\b
+
+  recipeDefinition:
+    patterns:
+    - match: ^(@)?([a-zA-Z_][a-zA-Z0-9_-]*)([a-zA-Z0-9=\s_-`'"]*):([\sa-zA-Z0-9_-]*).*$
+      captures:
+        '1': {name: entity.name.function.just}
+        '2': {name: entity.name.function.just}
+        '3':
+          patterns:
+          - name: constant.character.escape.just
+            match: '[\s]*[a-zA-Z0-9-_]*(=?)(.*)'
+            captures:
+              '0': {name: variable.name.just}
+              '1': {name: constant.other.just}
+              '2': {name: variable.parameter.just}
+        '4': {name: support.type.property-name.just}
+
+  scripts:
+    patterns:
+    - include: '#scripts_js'
+    - include: '#scripts_lua'
+    - include: '#scripts_perl'
+    - include: '#scripts_ruby'
+    - include: '#scripts_python'
+    - include: '#scripts_shell'
+
+  scripts_js:
+    patterns:
+    - name: markup.fenced_code.block.just
+      contentName: meta.embedded.block.javascript
+      begin: (^\s+)(#!)\s*(\S+) (node)\s*$
+      beginCaptures:
+        '2': {name: markup.italic}
+        '3': {name: markup.italic}
+        '4': {name: keyword.other}
+      end: ^$
+      patterns:
+      - include: source.js
+
+  scripts_lua:
+    patterns:
+    - name: markup.fenced_code.block.just
+      contentName: meta.embedded.block.lua
+      begin: (^\s+)(#!)\s*(\S+) (lua)\s*$
+      beginCaptures:
+        '2': {name: markup.italic}
+        '3': {name: markup.italic}
+        '4': {name: keyword.other}
+      end: ^$
+      patterns:
+      - include: source.lua
+
+  scripts_perl:
+    patterns:
+    - name: markup.fenced_code.block.just
+      contentName: meta.embedded.block.perl
+      begin: (^\s+)(#!)\s*(\S+) (perl)\s*$
+      beginCaptures:
+        '2': {name: markup.italic}
+        '3': {name: markup.italic}
+        '4': {name: keyword.other}
+      end: ^$
+      patterns:
+      - include: source.perl
+
+  scripts_python:
+    patterns:
+    - name: markup.fenced_code.block.just
+      contentName: meta.embedded.block.python
+      begin: (^\s+)(#!)\s*(\S+) (python3?)\s*$
+      beginCaptures:
+        '2': {name: markup.italic}
+        '3': {name: markup.italic}
+        '4': {name: keyword.other}
+      end: ^$
+      patterns:
+      - include: source.python
+
+  scripts_ruby:
+    patterns:
+    - name: markup.fenced_code.block.just
+      contentName: meta.embedded.block.ruby
+      begin: (^\s+)(#!)\s*(\S+) (ruby)\s*$
+      beginCaptures:
+        '2': {name: markup.italic}
+        '3': {name: markup.italic}
+        '4': {name: keyword.other}
+      end: ^$
+      patterns:
+      - include: source.ruby
+
+  scripts_shell:
+    patterns:
+    - name: markup.fenced_code.block.just
+      contentName: meta.embedded.block.shellscript
+      begin: (^\s+)(#!)\s*(\S+) ((?>fi|ba|c|k|z)?sh)\s*$
+      beginCaptures:
+        '2': {name: markup.italic}
+        '3': {name: markup.italic}
+        '4': {name: keyword.other}
+      end: ^$
+      patterns:
+      - include: source.shell
+
+  strings:
+    patterns:
+    - name: string.quoted.triple.just
+      begin: '`'
+      end: '`'
+    - name: string.quoted.double.just
+      begin: '"'
+      end: '"'
+    - name: string.quoted.single.just
+      begin: ''''
+      end: ''''
