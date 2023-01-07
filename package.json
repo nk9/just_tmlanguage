@@ -1,0 +1,25 @@
+{
+  "name": "just_tmlanguage",
+  "version": "1.0.0",
+  "description": "TMLanguage syntax for the Just command runner.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nk9/just_tmlanguage.git"
+  },
+  "author": "Nick Kocharhook",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nk9/just_tmlanguage/issues"
+  },
+  "homepage": "https://github.com/nk9/just_tmlanguage#readme",
+  "dependencies": {
+    "vscode-tmgrammar-test": "^0.1.1"
+  }
+}
