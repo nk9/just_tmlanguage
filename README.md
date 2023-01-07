@@ -17,3 +17,9 @@ These instructions assume you're using a Unix-based setup. If not, feel free to 
 ## Running the tests
 
 In Terminal, run `just test`.
+
+
+## Docs
+- [TextMate docs](https://macromates.com/manual/en/language_grammars) on the tmLanguage format
+- The Sublime community documentation has [some docs on Sublime's old implementation](https://docs.sublimetext.io/guide/extensibility/syntaxdefs.html) of the tmLanguage format
+- VSCode has [syntax docs](https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide) as well
