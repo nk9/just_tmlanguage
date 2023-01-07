@@ -1,5 +1,5 @@
 # [PackageDev] target_format: plist, ext: tmLanguage
-name: Just-YAML-TML
+name: Just-tmLang
 scopeName: source.just
 fileTypes: [just, justfile, '.justfile']
 uuid: 68027c80-19a7-47f2-8f03-347e783cccf9
@@ -10,7 +10,7 @@ patterns:
 - include: '#scripts'
 - include: '#strings'
 - include: '#assignments'
-- include: '#recipeDefinition'
+# - include: '#recipeDefinition'
 - include: '#keywords'
 
 repository:
@@ -37,21 +37,21 @@ repository:
     - name: keyword.control.just
       match: \b(arch|os|os_family|env_var|env_var_or_default)\b
 
-  recipeDefinition:
-    patterns:
-    - match: ^(@)?([a-zA-Z_][a-zA-Z0-9_-]*)([a-zA-Z0-9=\s_-`'"]*):([\sa-zA-Z0-9_-]*).*$
-      captures:
-        '1': {name: entity.name.function.just}
-        '2': {name: entity.name.function.just}
-        '3':
-          patterns:
-          - name: constant.character.escape.just
-            match: '[\s]*[a-zA-Z0-9-_]*(=?)(.*)'
-            captures:
-              '0': {name: variable.name.just}
-              '1': {name: constant.other.just}
-              '2': {name: variable.parameter.just}
-        '4': {name: support.type.property-name.just}
+  # recipeDefinition:
+  #   patterns:
+  #   - match: '^(@)?([a-zA-Z_][a-zA-Z0-9_-]*)([a-zA-Z0-9=\s_-`\'"]*):([\sa-zA-Z0-9_-]*).*$'
+  #     captures:
+  #       '1': {name: entity.name.function.just}
+  #       '2': {name: entity.name.function.just}
+  #       '3':
+  #         patterns:
+  #         - name: constant.character.escape.just
+  #           match: '[\s]*[a-zA-Z0-9-_]*(=?)(.*)'
+  #           captures:
+  #             '0': {name: variable.name.just}
+  #             '1': {name: constant.other.just}
+  #             '2': {name: variable.parameter.just}
+  #       '4': {name: support.type.property-name.just}
 
   scripts:
     patterns:
