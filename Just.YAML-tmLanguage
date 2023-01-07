@@ -37,6 +37,7 @@ repository:
     - name: keyword.control.just
       match: \b(arch|os|os_family|env_var|env_var_or_default)\b
 
+  # TODO: This was breaking the conversion, so I had to comment it out. NK
   # recipeDefinition:
   #   patterns:
   #   - match: '^(@)?([a-zA-Z_][a-zA-Z0-9_-]*)([a-zA-Z0-9=\s_-`\'"]*):([\sa-zA-Z0-9_-]*).*$'
